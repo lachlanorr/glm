@@ -42,7 +42,22 @@ source_group("SIMD Files" FILES ${SIMD_SOURCE})
 source_group("SIMD Files" FILES ${SIMD_INLINE})
 source_group("SIMD Files" FILES ${SIMD_HEADER})
 
+if(gaen_MINEXT)
+  add_library(glm INTERFACE
+    ${CORE_INLINE}
+    ${CORE_HEADER}
+    ${EXT_INLINE}
+    ${EXT_HEADER}
+    ${GTC_INLINE}
+    ${GTC_HEADER}
+    ${GTX_INLINE}
+    ${GTX_HEADER}
+    ${SIMD_INLINE}
+    ${SIMD_HEADER}
+    )
+else()
 add_library(glm INTERFACE)
+endif()
 target_include_directories(glm INTERFACE ../)
 
 if(BUILD_STATIC_LIBS)
